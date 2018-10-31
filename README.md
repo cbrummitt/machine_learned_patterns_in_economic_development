@@ -9,7 +9,7 @@ The results of this paper were generated mostly with Python 3.5.3 and, in a few 
 Clone this repository to your local machine. For the bulk of the results, create a virtual environment using your favorite tool for Python (e.g., `virtualenv` or Anaconda), and then install the requirements in `requirements.txt`. For example, with Anaconda:
 
 	# Clone the repo:
-	git clone <repo-URL>
+	git clone https://github.com/cbrummitt/machine_learned_patterns_in_economic_development.git
 
 	# Create a virtual environment:
 	conda create --name id_pat_econ_dev python=3.5.3
