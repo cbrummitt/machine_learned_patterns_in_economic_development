@@ -1,8 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+
 from ..utils import convert_panel_dataframe
-from .utils import maybe_save_fig
-from .utils import create_fig_ax
+from .utils import create_fig_ax, maybe_save_fig
 
 
 def histogram_boxplot_of_flattened_data(

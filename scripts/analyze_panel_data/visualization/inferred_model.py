@@ -4,22 +4,23 @@
 # Authors:
 # Charlie Brummitt <charles_brummitt@hms.harvard.edu>, Github: cbrummitt
 # Andres Gomez <Andres_Gomez@hks.harvard.edu>
-import numpy as np
-import matplotlib.pyplot as plt
+import itertools
+
 import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy
 from matplotlib.patches import Ellipse
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from sklearn.kernel_ridge import KernelRidge
-from sklearn.utils import check_array
-from sklearn.metrics import mean_squared_error
-from .utils import create_fig_ax, maybe_save_fig
-from .utils import convert_None_to_empty_dict_else_copy
-from .utils import make_color_cycler
 from scipy.spatial import ConvexHull
-import itertools
-from palettable.colorbrewer.qualitative import Dark2_3
-import scipy
+from sklearn.kernel_ridge import KernelRidge
+from sklearn.metrics import mean_squared_error
+from sklearn.utils import check_array
 
+from palettable.colorbrewer.qualitative import Dark2_3
+
+from .utils import (convert_None_to_empty_dict_else_copy, create_fig_ax,
+                    make_color_cycler, maybe_save_fig)
 
 country_color_dict = dict(zip([
     'ARG', 'AUS', 'BRA', 'CAN', 'CHN', 'COL', 'ESP', 'FRA', 'GBR', 'GRC',
@@ -152,6 +153,7 @@ def example_make_data_for_streamplot(n_samples=10, n_features=2, p=4):
 
     grid_points, predictions = make_data_for_streamplot(
         fake_data, krr, p, model_predicts_change=False)
+    return grid_points, predictions
 
 
 def bounding_grid(data, n_points_each_dim=30, max_num_points=1e7):
@@ -1115,7 +1117,7 @@ def density_list_plot_2d(
     cax, kwargs = mpl.colorbar.make_axes(
         [ax], location='bottom', fraction=0.05, pad=.1)
     cax.text(-.15, 0.1, error_label, ha='center', va='center')
-    cb = fig.colorbar(axim, cax=cax, orientation='horizontal', extend='max')
+    fig.colorbar(axim, cax=cax, orientation='horizontal', extend='max')
 
     maybe_save_fig(fig, save_fig)
     return fig, ax

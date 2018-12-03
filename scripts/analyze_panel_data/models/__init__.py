@@ -1,2 +1,2 @@
-from .PanelModel import PanelModel
-from .DimensionReducingPanelModel import SKLearnPanelModel
+from .PanelModel import PanelModel  # noqa
+from .DimensionReducingPanelModel import SKLearnPanelModel  # noqa

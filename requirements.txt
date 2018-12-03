@@ -13,3 +13,5 @@ sympy==1.0
 palettable==2.1.1
 imageio==2.1.2
 dill==0.2.6
+xlrd==1.0.0
+watermark==1.4.0

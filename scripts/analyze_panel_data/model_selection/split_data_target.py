@@ -1,6 +1,7 @@
-import pandas as pd
-from analyze_panel_data.utils import panel_to_multiindex
 import numpy as np
+import pandas as pd
+
+from analyze_panel_data.utils import panel_to_multiindex
 
 
 def split_panel_into_data_and_target_and_fill_missing(

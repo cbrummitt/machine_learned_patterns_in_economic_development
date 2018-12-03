@@ -1,10 +1,12 @@
+import warnings
 from collections import OrderedDict
-import load_data.download_population_data as dlpop
+
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.linear_model import LinearRegression
-import warnings
+
+import load_data.download_population_data as dlpop
 
 
 class DivideByPopulationPowerLaw(BaseEstimator, TransformerMixin):

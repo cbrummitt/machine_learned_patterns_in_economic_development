@@ -1,41 +1,43 @@
-import sklearn
-from sklearn.preprocessing import FunctionTransformer
-import sklearn.metrics
-from sklearn.metrics.scorer import make_scorer
-from analyze_panel_data.preprocessing.dimension_reduction import (
-    reduce_dim_of_panel)
-from ..utils import multiindex_to_panel
-import os
-import time
+import abc
 import datetime
 import itertools
-from operator import attrgetter
-import dill as pickle
+import os
+import time
 import warnings
-import numpy as np
-import pandas as pd
+from operator import attrgetter
+
+import imageio
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+import numpy as np
+import pandas as pd
+import sklearn
+import sklearn.metrics
 import sympy as sym
-from sklearn.pipeline import Pipeline
-from sklearn.base import clone
-import abc
-from ..model_selection.split_data_target import (
-    split_panel_into_data_and_target_and_fill_missing)
-from sklearn.externals import joblib
-from analyze_panel_data.utils import split_pipeline_at_step
-from ..visualization.utils import (
-    create_fig_ax, maybe_save_fig, shifted_color_map,
-    convert_None_to_empty_dict_else_copy)
-from ..visualization.inferred_model import (
-    bounding_grid, mask_arrays_with_convex_hull, make_axis_labels,
-    aggregate_dimensions_of_grid_points_and_velocities)
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.spatial import ConvexHull
-from ..visualization import inferred_model as vis_model
-import imageio
-from ..utils import hash_string
+from sklearn.base import clone
+from sklearn.externals import joblib
+from sklearn.metrics.scorer import make_scorer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
 
+import dill as pickle
+from analyze_panel_data.preprocessing.dimension_reduction import \
+    reduce_dim_of_panel
+from analyze_panel_data.utils import split_pipeline_at_step
+
+from ..model_selection.split_data_target import \
+    split_panel_into_data_and_target_and_fill_missing
+from ..utils import hash_string, multiindex_to_panel
+from ..visualization import inferred_model as vis_model
+from ..visualization.inferred_model import (
+    aggregate_dimensions_of_grid_points_and_velocities,
+    bounding_grid, make_axis_labels,
+    mask_arrays_with_convex_hull)
+from ..visualization.utils import (convert_None_to_empty_dict_else_copy,
+                                   create_fig_ax, maybe_save_fig,
+                                   shifted_color_map)
 
 regression_metrics = [
     sklearn.metrics.r2_score,
@@ -2049,7 +2051,7 @@ class SINDyPanelModel(SKLearnPanelModel):
 
         if self.model_predicts_change:
             if latex:
-                change_or_next = '\Delta'
+                change_or_next = '\Delta'  # noqa
             else:
                 change_or_next = 'change in'
         else:
@@ -2102,6 +2104,6 @@ class SINDyPanelModel(SKLearnPanelModel):
 
 
 def clip_array_at_percentiles(arr, percentiles):
-        clip_lower = np.percentile(arr, percentiles[0])
-        clip_upper = np.percentile(arr, percentiles[1])
-        return np.clip(arr, clip_lower, clip_upper)
+    clip_lower = np.percentile(arr, percentiles[0])
+    clip_upper = np.percentile(arr, percentiles[1])
+    return np.clip(arr, clip_lower, clip_upper)

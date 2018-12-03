@@ -1,8 +1,10 @@
 import logging
+import os
+
 import numpy as np
 import pandas as pd
+
 from pandas_datareader import wb
-import os
 
 logger = logging.getLogger(__name__)
 
@@ -683,7 +685,6 @@ def load_gdp_per_capita_nonmissing(start_year=1962, end_year=2016):
     gdp_per_capita_nonmissing = (
         gdp_per_capita.gdp_per_capita_constant2010USD.dropna())
     return gdp_per_capita_nonmissing
-
 
 
 # def visualize_gams(

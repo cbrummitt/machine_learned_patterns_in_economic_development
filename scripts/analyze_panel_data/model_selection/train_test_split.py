@@ -5,21 +5,21 @@ train_test_split_of_panels_items_and_major_axes
 random_train_test_split_of_panels
 sequential_train_test_split_of_panels
 """
-#   Charlie Brummitt <brummitt@gmail.com> Github: cbrummitt
-#   Andres Gomez Lievano <andres_gomez@hks.harvard.edu>
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection._split import _validate_shuffle_split
-from analyze_panel_data.utils import panel_to_multiindex
+import numbers
+import warnings
+from abc import ABCMeta, abstractmethod
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import load_data.synthetic_exports_data as synthetic_exports_data
-import warnings
 from sklearn.externals.six import with_metaclass
-from abc import ABCMeta, abstractmethod
-from sklearn.model_selection._split import BaseCrossValidator
-import numbers
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection._split import (BaseCrossValidator,
+                                            _validate_shuffle_split)
+
+import load_data.synthetic_exports_data as synthetic_exports_data
+from analyze_panel_data.utils import panel_to_multiindex
 
 
 def train_test_split_of_panels_items_and_major_axes(*panels, **kwargs):
@@ -550,7 +550,7 @@ def demonstrate_MultiTimeSeriesSplit(n_train_test_sets=3,
     split_indices = list(mtss.split(midx_df))
 
     n_train_test_sets = len(split_indices)
-    fig, ax = plt.subplots(nrows=n_train_test_sets)
+    __, ax = plt.subplots(nrows=n_train_test_sets)
     colors = ['#69D2E7', '#FA6900', '#E0E4CC']
 
     for i in range(len(split_indices)):

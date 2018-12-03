@@ -1,9 +1,10 @@
 # Download population data from the World Bank and write it to a JSON file
-from pandas_datareader import wb
-import pandas as pd
-import os
 import logging
+import os
 
+import pandas as pd
+
+from pandas_datareader import wb
 
 logger = logging.getLogger(__name__)
 

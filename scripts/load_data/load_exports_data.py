@@ -1,7 +1,8 @@
-import load_data.download_population_data as dlpop
 import os
+
 import pandas as pd
 
+import load_data.download_population_data as dlpop
 
 PATH_TO_EXPORTS_DATA = os.path.join(
     os.pardir, 'data', 'raw', 'exports', 'S2_final_cpy_all.dta')

@@ -5,36 +5,37 @@
 The SymbolicFeatures module expands data into polynomial features and into
 arbitrary symbolic expressions.
 """
-import pandas as pd
-import numpy as np
-import sympy as sym
+import itertools
+import os
 import pickle
 import warnings
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-import os
-import itertools
-import sklearn.metrics
-from sklearn.exceptions import NotFittedError
-from sklearn.utils import check_array
-from ..utils.convert_panel_dataframe import panel_to_multiindex
-from ..utils.convert_panel_dataframe import multiindex_to_panel
-from ..visualization.utils import convert_None_to_empty_dict_else_copy
-import analyze_panel_data.model_selection.split_data_target as\
-    split_data_target
-from analyze_panel_data.model_selection.utils import cross_val_score_with_times
-from ..visualization.utils import (
-    create_fig_ax, maybe_save_fig, shifted_color_map)
-from ..visualization.inferred_model import (
-    bounding_grid, mask_arrays_with_convex_hull,
-    aggregate_dimensions_of_grid_points_and_velocities,
-    make_axis_labels)
-from ..visualization import inferred_model as vis_model
-import imageio
-from scipy.spatial import ConvexHull
 from operator import attrgetter
 
+import imageio
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import sklearn.metrics
+import sympy as sym
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+from scipy.spatial import ConvexHull
+from sklearn.exceptions import NotFittedError
+from sklearn.utils import check_array
+
+import analyze_panel_data.model_selection.split_data_target as split_data_target  # noqa
+from analyze_panel_data.model_selection.utils import cross_val_score_with_times
+
+from ..utils.convert_panel_dataframe import (multiindex_to_panel,
+                                             panel_to_multiindex)
+from ..visualization import inferred_model as vis_model
+from ..visualization.inferred_model import (
+    aggregate_dimensions_of_grid_points_and_velocities,
+    bounding_grid, make_axis_labels,
+    mask_arrays_with_convex_hull)
+from ..visualization.utils import (convert_None_to_empty_dict_else_copy,
+                                   create_fig_ax, maybe_save_fig,
+                                   shifted_color_map)
 
 regression_metrics = [
     sklearn.metrics.r2_score,
@@ -460,10 +461,10 @@ class PanelModel(object):
         # Need to grab the value 1 time step ago, so use `data.loc[:, 1]`
         if dim_reducer is not None:
             data_dim_reduced = dim_reducer.fit_transform(self.data.loc[:, 1])
-            target_dim_reduced = dim_reducer.transform(self.target)
+            # target_dim_reduced = dim_reducer.transform(self.target)
         else:
             data_dim_reduced = self.data.loc[:, 1]
-            target_dim_reduced = self.target
+            # target_dim_reduced = self.target
 
         grid_points, meshgrids = bounding_grid(
             data_dim_reduced, n_points_each_dim=n_points_each_dim)
@@ -778,7 +779,7 @@ class PanelModel(object):
             axes_limit_padding_fraction=.05):
         """Create a sequence of 3D scatter plots, and return their paths."""
         frame_path = os.path.join(self.animations_path, frames_folder)
-        make_path_if_it_does_not_exist(frame_path)
+        os.makedirs(frame_path, exist_ok=True)
 
         items_to_trajectories_2d_arrays = {
             item: check_array(trajectory)[:, dimensions_to_keep]
@@ -848,7 +849,7 @@ class PanelModel(object):
             self, frame_paths, gif_filename='iterated_predictions.gif',
             fps=25, subrectangles=True):
         """Create a GIF from a list of paths to images."""
-        make_path_if_it_does_not_exist(self.animations_path)
+        os.makedirs(self.animations_path, exist_ok=True)
         gif_filepath = os.path.join(self.animations_path, gif_filename)
         images = []
         for image_filename in frame_paths:
@@ -911,7 +912,7 @@ class PanelModel(object):
             filename='', subrectangles=True, fps=10):
         """Rotates and zooms in and out of a 3D figure; saves to files."""
         frame_path = os.path.join(self.animations_path, frames_folder)
-        make_path_if_it_does_not_exist(frame_path)
+        os.makedirs(frame_path, exist_ok=True)
         ax = fig.gca()
 
         # configure the initial viewing perspective
@@ -982,7 +983,7 @@ class PanelModel(object):
             axis_kw = {'axis': axis_to_remove}
             mse_over_time_mean = squared_residuals_panel.mean(**axis_kw)
             mse_over_time_std = squared_residuals_panel.std(**axis_kw)
-            mse_over_time_max = squared_residuals_panel.max(**axis_kw)
+            # mse_over_time_max = squared_residuals_panel.max(**axis_kw)
 
             ylabel = 'MSE of {}\naveraged over {}'.format(
                 axis_to_keep, axis_to_remove)

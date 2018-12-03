@@ -1,6 +1,6 @@
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
 import numpy as np
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.pipeline import Pipeline
 
 
 def create_random_search(estimator, distributions, cv,

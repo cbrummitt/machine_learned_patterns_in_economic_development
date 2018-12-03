@@ -1,8 +1,6 @@
 # Miscellaneous functions
-# Authors:
-#   Charlie Brummitt <brummitt@gmail.com> Github: cbrummitt
-#   Andres Gomez Lievano <andres_gomez@hks.harvard.edu>
 import hashlib
+
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer
 

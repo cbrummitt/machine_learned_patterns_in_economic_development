@@ -1,17 +1,16 @@
 """Utilities for selecting models.
 """
-#   Charlie Brummitt <brummitt@gmail.com> Github: cbrummitt
-#   Andres Gomez Lievano <andres_gomez@hks.harvard.edu>
-from sklearn.utils import indexable
-from sklearn.base import is_classifier, clone
-from sklearn.model_selection._split import check_cv
-from sklearn.metrics.scorer import check_scoring
-from sklearn.externals.joblib import Parallel, delayed
-from sklearn.model_selection._validation import _fit_and_score
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn.base import clone, is_classifier
+from sklearn.externals.joblib import Parallel, delayed
+from sklearn.metrics.scorer import check_scoring
+from sklearn.model_selection._split import check_cv
+from sklearn.model_selection._validation import _fit_and_score
+from sklearn.utils import indexable
 
 
 def const_searches_per_hyperparam(searches_per_param=5, max_searches=100):

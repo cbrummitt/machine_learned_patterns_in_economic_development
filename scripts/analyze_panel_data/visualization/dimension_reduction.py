@@ -1,11 +1,10 @@
-from math import ceil
-import matplotlib.pyplot as plt
-import matplotlib as mpl
 import textwrap
-from statsmodels.tsa import stattools
-import os
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
 from .utils import maybe_save_fig, shifted_color_map
 
 
@@ -202,7 +201,7 @@ def biplot(scores, loadings, axis=None,
 
     if scores.shape[1] < 2:
         raise ValueError("The number of principal component scores" +
-                         + " must be at least 2.")
+                         " must be at least 2.")
 
     if axis is None:
         fig, axis = plt.subplots(figsize=figsize)
@@ -463,7 +462,6 @@ def plot_loadings(
 
     axim = ax.matshow(loadings, cmap=cmap, aspect=aspect)
 
-    font_size = 8
     major_tick_label_size = 6
     minor_tick_label_size = 0
     tick_font_size = 7
@@ -502,7 +500,7 @@ def plot_loadings(
         [ax], location='bottom', fraction=0.04,
         aspect=aspect_colobar, pad=.03)
     cax.text(-0.08, 0.25, loading_label, ha='center', va='center')
-    cb = fig.colorbar(axim, cax=cax, **kwargs)
+    fig.colorbar(axim, cax=cax, **kwargs)
 
     fig.text(*A_label_pos, A_label, weight='bold', horizontalalignment='left')
     fig.text(*B_label_pos, B_label, weight='bold', horizontalalignment='left')
@@ -518,7 +516,8 @@ def plot_increasing_alpha(data, ax, alpha_range, plot_kws=None):
     else:
         for i, (traj_now, traj_next) in enumerate(zip(data[:-1], data[1:])):
             frac_idx = i / len(data)
-            alpha = alpha_range[0] + (alpha_range[1] - alpha_range[0]) * frac_idx
+            alpha = (alpha_range[0] + (alpha_range[1] - alpha_range[0]) *
+                     frac_idx)
             ax.plot(
                 [traj_now[0], traj_next[0]],
                 [traj_now[1], traj_next[1]],

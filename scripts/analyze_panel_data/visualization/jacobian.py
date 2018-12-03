@@ -1,10 +1,7 @@
 # jacobian.py contains functions for visualizing the Jacobian
 # of an inferred model
-#
-# Authors:
-# Charlie Brummitt
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 
 def convert_Jacobian_to_long_format(coef, columns):

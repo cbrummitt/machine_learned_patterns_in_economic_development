@@ -1,4 +1,5 @@
 import pandas as pd
+
 from analyze_panel_data.utils import panel_to_multiindex
 
 
@@ -35,9 +36,9 @@ medium_panel = pd.Panel({
          (2., 'bananas'): [0, 1, 0, 2]},
         index=annual_index(1990, 1993), dtype=int),
     'MEX': pd.DataFrame(
-        {(1., 'apples'): [1, 2, 4],
-         (2., 'bananas'): [100, 120, 125]},
-        index=annual_index(1992, 1994))})
+        {(1., 'apples'): [1, 2, 4, 8],
+         (2., 'bananas'): [100, 120, 125, 130]},
+        index=annual_index(1992, 1995))})
 medium_panel.items.name = 'country_code'
 medium_panel.minor_axis.name = 'products'
 medium_panel.minor_axis.names = ['product_code', 'product_name']

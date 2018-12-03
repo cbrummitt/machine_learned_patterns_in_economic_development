@@ -1,10 +1,10 @@
 # import pandas as pd
 import logging
+
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler
-
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +91,7 @@ class IteratedLog1p(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         """Apply `numpy.log1p` to `X` `n` times."""
         result = X.copy()
-        for i in range(self.n):
+        for __ in range(self.n):
             result = np.log1p(result)
 
         if isinstance(X, pd.DataFrame):
@@ -107,7 +107,7 @@ class IteratedLog1p(BaseEstimator, TransformerMixin):
     def inverse_transform(self, X):
         """Apply `np.exp(X) - 1` `n` times."""
         result = X.copy()
-        for i in range(self.n):
+        for __ in range(self.n):
             result = np.exp(X) - 1.0
         if isinstance(X, pd.DataFrame):
             result = pd.DataFrame(result, index=X.index, columns=X.columns)

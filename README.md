@@ -19,7 +19,15 @@ Clone this repository to your local machine. For the bulk of the results, create
 
 	# Activate the virtual environment and install the requirements
 	source activate id_pat_econ_dev
+
+	# Install the requirements
 	pip install -r requirements.txt
+
+When installing cartopy (one of the packages in `requirements.txt`), you may get the error message `Proj4 4.9.0 must be installed in Conda environment "id_pat_econ_dev".`. If so, then install [proj4](https://proj4.org/install.html) via `conda install -c conda-forge proj4` so that you can install cartopy; then run `pip install -r requirements.txt` again.
+
+When you're done using this conda environment, run
+	source deactivate
+to deactivate the environment `id_pat_econ_dev`.
 
 ### Jupyter notebook for creating (most of) the figures
 

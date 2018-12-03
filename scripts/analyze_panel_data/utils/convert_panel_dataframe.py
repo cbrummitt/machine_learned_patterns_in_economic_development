@@ -1,7 +1,4 @@
 # Helpful functions for manipulating pandas Panels
-# Authors:
-#   Charlie Brummitt <brummitt@gmail.com> Github: cbrummitt
-#   Andrés Gómez Liévano <andres_gomez@hks.harvard.edu>
 
 
 def panel_to_multiindex(panel, filter_observations=False):

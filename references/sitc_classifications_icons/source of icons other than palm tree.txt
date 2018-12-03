@@ -1,0 +1,6 @@
+All icons are from the Atlas of Economic Complexity:
+
+https://github.com/cid-harvard/atlas-economic-complexity/tree/beta/media/filterVariations/text/foundation/img
+
+
+dark_green_cow.png is a modification of https://github.com/cid-harvard/atlas-economic-complexity/blob/beta/media/filterVariations/text/foundation/img/community_0.png

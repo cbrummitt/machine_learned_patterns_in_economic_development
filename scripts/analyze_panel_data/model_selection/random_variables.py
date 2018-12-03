@@ -1,6 +1,6 @@
-from scipy.stats import uniform as sp_uniform
 from abc import ABCMeta, abstractproperty
 
+from scipy.stats import uniform as sp_uniform
 
 __all__ = [
     'ExponentiateDistribution', 'loguniform_dist', 'LogUniformDistribution',

@@ -1,11 +1,13 @@
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import numpy as np
 import copy
 import itertools
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+
 import palettable
-from palettable.colorbrewer.qualitative import Accent_8, Pastel1_9
-from palettable.colorbrewer.qualitative import Set1_9, Set3_12
+from palettable.colorbrewer.qualitative import (Accent_8, Pastel1_9, Set1_9,
+                                                Set3_12)
 
 
 def maybe_save_fig(fig, save_fig, bbox_inches='tight'):
