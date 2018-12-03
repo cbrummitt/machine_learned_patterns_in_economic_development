@@ -29,6 +29,10 @@ When you're done using this conda environment, run
 
 to deactivate the environment `id_pat_econ_dev`.
 
+### Minimal working example
+
+For a minimal example of using the codebase, open the notebook `Minimal_example.ipynb` inside the `notebooks` directory.
+
 ### Jupyter notebook for creating (most of) the figures
 
 The Jupyter notebook
