@@ -4,6 +4,13 @@ This repository contains the code and instructions for reproducing the results o
 
 ## Reproducing the results
 
+### Data
+
+The data on exports used in this paper is available for download [at Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/B0ASZU). Use that link to reproduce the results.
+
+To study the most recent version of this dataset and of related ones, go to the [downloads page at the Harvard Atlas of Economic Complexity](http://atlas.cid.harvard.edu/downloads).
+
+### Code
 The results of this paper were generated mostly with Python 3.5.3 and, in a few minor parts, in R.
 
 Clone this repository to your local machine. For the bulk of the results, create a virtual environment using your favorite tool for Python (e.g., `virtualenv` or Anaconda), and then install the requirements in `requirements.txt`. For example, with Anaconda:
@@ -29,11 +36,11 @@ When you're done using this conda environment, run
 
 to deactivate the environment `id_pat_econ_dev`.
 
-### Minimal working example
+#### Minimal working example
 
 For a minimal example of using the codebase, open the notebook `Minimal_example.ipynb` inside the `notebooks` directory.
 
-### Jupyter notebook for creating (most of) the figures
+#### Jupyter notebook for creating (most of) the figures
 
 The Jupyter notebook
 
@@ -48,7 +55,7 @@ The notebook
 conducts the two robustness checks described in the SI, in which the score on the first principal component is substituted with total export value per capita or with diversification (defined as the number of products with revealed comparative advantage greater than one).
 
 
-### QQ plot 
+#### QQ plot 
 
 The folder
 
@@ -68,6 +75,6 @@ The R Markdown file
 creates the three GAMs on the preprocessed data with and without the target transformed by square root. It uses the package [`mgcv`](ttps://cran.r-project.org/web/packages/mgcv/index.html) to compute quantile-quantile plots and plots of the residuals to determine how far the target is from normally distributed.
 
 
-### Regressions with other indicators
+#### Regressions with other indicators
 
 Figures SI-7 through SI-10 are made by the R script `notebooks/scriptsR/PriSDA_correlations_with_PC0.R`.
