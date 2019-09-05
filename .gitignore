@@ -1,5 +1,6 @@
 data/
 figures/*
+models/*
 
 .ipynb_checkpoints
 
